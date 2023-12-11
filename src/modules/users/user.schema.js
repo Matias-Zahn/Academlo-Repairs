@@ -1,4 +1,5 @@
 import z from 'zod';
+import { extractValidationData } from '../../common/utils/extracValidator.js';
 
 const registerUserSchema = z.object({
    name: z
@@ -21,6 +22,7 @@ const registerUserSchema = z.object({
       })
       .min(3, { message: 'Password is to short' })
       .max(50, { message: 'Password is to long' }),
+   role: z.string(),
 });
 
 const loginUserSchema = z.object({
@@ -52,23 +54,24 @@ export function validateUser(data) {
    };
 }
 
-export const extractValidationData = (resultValidation) => {
-   let errorMessages;
-   let data; //data limpia
-   const hasError = !resultValidation.success;
+export function validateLoginUser(data) {
+   const result = loginUserSchema.safeParse(data);
 
-   if (hasError) errorMessages = JSON.parse(resultValidation.error.message);
-   if (!hasError) data = resultValidation.data;
+   const {
+      hasError,
+      errorMessages,
+      data: userData,
+   } = extractValidationData(result);
 
    return {
       hasError,
       errorMessages,
-      data,
+      userData,
    };
-};
+}
 
-export function validateLoginUser(data) {
-   const result = loginUserSchema.safeParse(data);
+export function validatePartialUser(data) {
+   const result = registerUserSchema.partial().safeParse(data);
 
    const {
       hasError,
