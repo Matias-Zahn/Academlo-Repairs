@@ -9,7 +9,6 @@ export const findAllRepairs = catchAsync(async (req, res, next) => {
 });
 
 export const createRepair = catchAsync(async (req, res, next) => {
-   console.log(req.body);
    const { hasError, errorMessages, repairData } = validateRepair(req.body);
 
    if (hasError)

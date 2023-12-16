@@ -49,6 +49,20 @@ export const protect = catchAsync(async (req, res, next) => {
    next();
 });
 
+export const protectAccountOwner = (req, res, next) => {
+   const { user, sessionUser } = req;
+
+   if (user.id !== sessionUser.id)
+      return next(
+         new AppError(
+            ' You don not have permission to perform this action',
+            401
+         )
+      );
+
+   next();
+};
+
 export const restricTo = (...roles) => {
    return (req, res, next) => {
       if (!roles.includes(req.sessionUser.role))

@@ -1,3 +1,4 @@
+import Repair from '../repairs/repairs.model.js';
 import User from './users.model.js';
 
 export class UserService {
@@ -7,6 +8,9 @@ export class UserService {
             id: id,
             status: 'available',
          },
+         attributes: {
+            exclude: ['password', 'createdAt', 'updatedAt', 'status'],
+         },
       });
    }
 
@@ -14,6 +18,9 @@ export class UserService {
       return await User.findAll({
          where: {
             status: 'available',
+         },
+         attributes: {
+            exclude: ['password', 'createdAt', 'updatedAt', 'status'],
          },
       });
    }

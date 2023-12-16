@@ -4,5 +4,5 @@ import { router as repairsRoute } from '../modules/repairs/repairs.route.js';
 
 export const router = express.Router();
 
-router.use('/repairs', repairsRoute);
 router.use('/users', usersRoute);
+router.use('/repairs', repairsRoute);
