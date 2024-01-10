@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 //rutas
 app.use('/api/v1', router);
 
+app.use((req, res, next) => {
+   res.header('Access-Control-Allow-Origin', 'http://localhost:5173/');
+});
+
 app.all('/*', (req, res, next) => {
    return next(
       new AppError(`Can not find ${req.originalUrl} on this server`, 404)
