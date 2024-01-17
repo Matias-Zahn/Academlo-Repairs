@@ -15,8 +15,6 @@ router.post('/', createRepair);
 
 router.use(protect);
 
-router.use(restricTo('employee'));
-
 router.get('/', findAllRepairs);
 
 router

@@ -14,7 +14,7 @@ export const createRepair = catchAsync(async (req, res, next) => {
    if (hasError)
       return res.status(422).json({ status: 'error', message: errorMessages });
 
-   const repair = await RepairService.create(repairData);
+   const repair = await RepairService.create(repairData);   
 
    return res.status(201).json(repair);
 });
