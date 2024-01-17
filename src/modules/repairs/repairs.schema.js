@@ -2,8 +2,7 @@ import z from 'zod';
 import { extractValidationData } from '../../common/utils/extracValidator.js';
 
 export const repairSchema = z.object({
-   date: z.string({
-      invalid_type_error: 'date must be a string',
+   date: z.date({
       required_error: 'date is required',
    }),
    motorsNumber: z.string({
