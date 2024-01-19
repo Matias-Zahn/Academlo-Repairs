@@ -28,7 +28,7 @@ export class RepairService {
             status: ['pending', 'completed'],
          },
          attributes: {
-            exclude: [, 'createdAt', 'updatedAt', 'status'],
+            exclude: [, 'createdAt', 'updatedAt'],
          },
          include: [
             {
